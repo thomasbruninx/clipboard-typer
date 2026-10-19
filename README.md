@@ -12,6 +12,8 @@ Requires Xcode or the Swift command line tools (Swift 5.10 or later).
 
 The script builds a release executable for your Mac, packages and locally signs `dist/Clipboard Typer.app`, and launches it. The Codex **Run** button uses the same script. The app has a menu bar icon and no Dock icon or main window.
 
+The app's keyboard artwork lives in `Assets/AppIcon.png`. Each build generates the full macOS `.icns` size set and embeds it in the app bundle. See [icon design notes](Assets/README.md) for the generation prompt. The menu bar continues to use a monochrome system symbol so it adapts to the menu bar appearance.
+
 To build without launching, use `./script/build_and_run.sh --build`. Other modes: `--verify` (check process after launch), `--debug` (LLDB), `--logs`, and `--telemetry` (process logs). Run tests with `swift test`.
 
 ## Install

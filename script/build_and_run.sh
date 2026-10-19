@@ -19,8 +19,10 @@ pkill -x "$APP_NAME" >/dev/null 2>&1 || true
 swift build -c release
 BUILD_BINARY="$(swift build -c release --show-bin-path)/$APP_NAME"
 mkdir -p "$APP_CONTENTS/MacOS"
+mkdir -p "$APP_CONTENTS/Resources"
 cp "$BUILD_BINARY" "$APP_BINARY"
 chmod +x "$APP_BINARY"
+"$ROOT_DIR/script/build_icon.sh" "$APP_CONTENTS/Resources/AppIcon.icns"
 cat > "$APP_CONTENTS/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -29,6 +31,7 @@ cat > "$APP_CONTENTS/Info.plist" <<PLIST
   <key>CFBundleIdentifier</key><string>$BUNDLE_ID</string>
   <key>CFBundleName</key><string>Clipboard Typer</string>
   <key>CFBundleDisplayName</key><string>Clipboard Typer</string>
+  <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>1.0.0</string>
   <key>CFBundleVersion</key><string>1</string>
